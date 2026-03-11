@@ -1,547 +1,1225 @@
-export default function AnasLawFirmWebsite() {
-  const services = [
-    {
-      title: "International Family Law",
-      description:
-        "Advice and representation in cross-border family matters involving Spain, Germany, and multiple jurisdictions, with a focus on clarity, discretion, and strategic direction.",
-    },
-    {
-      title: "International Child Abduction",
-      description:
-        "Guidance in urgent Hague Convention matters, custody disputes, return proceedings, and relocation conflicts requiring immediate and experienced cross-border legal support.",
-    },
-    {
-      title: "Cross-Border Mediation",
-      description:
-        "Constructive dispute resolution for international families seeking efficient, child-focused, and culturally informed solutions outside or alongside court proceedings.",
-    },
-    {
-      title: "Inheritance Across Borders",
-      description:
-        "Advice on succession, estate matters, and legal coordination between Spanish and German frameworks in international inheritance cases.",
-    },
-    {
-      title: "International Agreements",
-      description:
-        "Legal support for cross-border contracts, private agreements, and matters involving more than one legal system, with careful review of jurisdictional implications.",
-    },
-    {
-      title: "Strategic Legal Advice",
-      description:
-        "Careful legal assessment, jurisdiction analysis, and practical strategy for complex international situations where legal, cultural, and procedural issues intersect.",
-    },
-  ];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ana Piernas López — Abogada & Rechtsanwältin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cyan: #00E5D4;
+    --cyan-light: #7FF4EC;
+    --cyan-pale: #E0FDFB;
+    --navy: #0F1B3D;
+    --navy-mid: #1B2A5E;
+    --navy-soft: #2A3F7A;
+    --ink: #1A1A2E;
+    --stone: #6B7280;
+    --parchment: #F7F6F2;
+    --white: #FFFFFF;
+    --gold: #C4A052;
+  }
 
-  const advantages = [
-    "Dual-qualified in Germany and Spain",
-    "More than 20 years of international legal practice",
-    "Focused on complex cross-border family matters",
-    "Mediator, lawyer, and parenting coordination expertise",
-    "Fluent in Spanish, German, and English",
-    "Cross-cultural understanding built through lived and professional experience",
-  ];
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-  const credentials = [
-    "Founder, Piernas Abogados",
-    "Ambassador for MiKK in Spain",
-    "Lecturer in international family law and mediation",
-    "Speaker at international legal conferences",
-    "Published in specialist legal journals",
-    "Cross-border mediator for international cases",
-  ];
+  html { scroll-behavior: smooth; }
 
-  const insights = [
-    {
-      title: "International Child Abduction Under the Hague Convention",
-      excerpt:
-        "What parents should understand when a cross-border custody conflict becomes urgent and immediate legal steps matter.",
-    },
-    {
-      title: "Jurisdiction in Spain–Germany Family Disputes",
-      excerpt:
-        "How courts determine competence in international custody, divorce, and parental responsibility matters.",
-    },
-    {
-      title: "When Mediation Works in Cross-Border Family Cases",
-      excerpt:
-        "Why structured mediation can reduce conflict, time, and uncertainty in sensitive international disputes.",
-    },
-  ];
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--parchment);
+    color: var(--ink);
+    overflow-x: hidden;
+    cursor: none;
+  }
 
-  const faqs = [
-    {
-      q: "Who do you advise?",
-      a: "The practice is designed for international families, expatriates, and private clients facing legal matters across Spain, Germany, and other jurisdictions.",
-    },
-    {
-      q: "Do you work in more than one language?",
-      a: "Yes. Consultations and legal communication can be handled in Spanish, German, and English.",
-    },
-    {
-      q: "Can a matter be resolved without going to court?",
-      a: "In many cases, yes. Mediation and negotiated solutions are explored where appropriate, while litigation strategy remains available when needed.",
-    },
-    {
-      q: "What types of matters are most common?",
-      a: "International custody disputes, child abduction matters, cross-border family law, inheritance issues, and legal matters involving Spanish and German law.",
-    },
-  ];
+  /* CUSTOM CURSOR */
+  .cursor {
+    position: fixed; width: 8px; height: 8px;
+    background: var(--cyan); border-radius: 50%;
+    pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+  }
+  .cursor-ring {
+    position: fixed; width: 32px; height: 32px;
+    border: 1px solid var(--cyan); border-radius: 50%;
+    pointer-events: none; z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: all 0.18s ease;
+    opacity: 0.6;
+  }
+  body:hover .cursor { opacity: 1; }
 
-  const navItems = [
-    { label: "About", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Credentials", href: "#credentials" },
-    { label: "Insights", href: "#insights" },
-    { label: "Contact", href: "#contact" },
-  ];
+  /* NAVIGATION */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 24px 60px;
+    background: transparent;
+    transition: all 0.4s ease;
+  }
+  nav.scrolled {
+    background: rgba(15, 27, 61, 0.96);
+    backdrop-filter: blur(16px);
+    padding: 16px 60px;
+    box-shadow: 0 1px 0 rgba(0,229,212,0.12);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 14px;
+  }
+  .nav-logo-mark {
+    width: 44px; height: 44px;
+    background: var(--cyan);
+    display: flex; align-items: center; justify-content: center;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    position: relative; overflow: hidden;
+    flex-shrink: 0;
+  }
+  /* SVG logo recreation using CSS */
+  .nav-logo-mark svg { width: 36px; height: 36px; }
+  .nav-logo-text {
+    display: flex; flex-direction: column; line-height: 1.1;
+  }
+  .nav-logo-text .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; font-weight: 600;
+    color: var(--white); letter-spacing: 0.04em;
+  }
+  nav:not(.scrolled) .nav-logo-text .name { color: var(--navy); }
+  .nav-logo-text .title-tag {
+    font-size: 10px; color: var(--cyan);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    font-family: 'DM Mono', monospace;
+  }
+  nav:not(.scrolled) .nav-logo-text .title-tag { color: var(--navy-soft); }
 
-  return (
-    <div className="min-h-screen bg-stone-50 text-slate-900 antialiased">
-      <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-stone-50/95 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-          <a href="#top" className="min-w-0">
-            <div className="font-serif text-xl tracking-wide text-slate-950">
-              Ana Piernas López
-            </div>
-            <div className="text-xs uppercase tracking-[0.22em] text-slate-600">
-              International Family Lawyer
-            </div>
-          </a>
+  .nav-links {
+    display: flex; gap: 36px; list-style: none; align-items: center;
+  }
+  .nav-links a {
+    font-size: 12px; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none;
+    color: var(--white); opacity: 0.8;
+    transition: opacity 0.2s, color 0.2s;
+    position: relative;
+  }
+  nav:not(.scrolled) .nav-links a { color: var(--navy); }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -3px; left: 0;
+    width: 0; height: 1px; background: var(--cyan);
+    transition: width 0.3s ease;
+  }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-links a:hover { opacity: 1; color: var(--cyan) !important; }
 
-          <nav className="hidden items-center gap-8 text-sm text-slate-700 md:flex">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="transition hover:text-slate-950"
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
+  .nav-cta {
+    background: var(--cyan); color: var(--navy) !important;
+    padding: 10px 24px; font-weight: 500 !important;
+    font-size: 12px !important; letter-spacing: 0.08em;
+    transition: all 0.3s ease !important; opacity: 1 !important;
+  }
+  .nav-cta::after { display: none !important; }
+  .nav-cta:hover { background: var(--white) !important; transform: translateY(-1px); box-shadow: 0 8px 20px rgba(0,229,212,0.3) !important; }
 
-          <a
-            href="#contact"
-            className="rounded-full bg-slate-900 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
-          >
-            Schedule a Consultation
-          </a>
-        </div>
-      </header>
+  /* HERO */
+  .hero {
+    min-height: 100vh; position: relative; overflow: hidden;
+    display: grid; grid-template-columns: 1fr 1fr;
+    background: var(--navy);
+  }
+  .hero-left {
+    display: flex; flex-direction: column;
+    justify-content: flex-end; padding: 120px 80px 80px;
+    position: relative; z-index: 2;
+  }
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 32px;
+  }
+  .hero-eyebrow span {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--cyan);
+  }
+  .hero-eyebrow-line {
+    width: 40px; height: 1px; background: var(--cyan); opacity: 0.4;
+  }
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 6vw, 80px);
+    font-weight: 300; line-height: 1.05;
+    color: var(--white); margin-bottom: 8px;
+  }
+  .hero-name em {
+    font-style: italic; color: var(--cyan);
+  }
+  .hero-credentials {
+    display: flex; gap: 16px; margin-bottom: 32px; flex-wrap: wrap;
+  }
+  .credential-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    border: 1px solid rgba(0,229,212,0.3);
+    color: var(--cyan-light); padding: 6px 12px;
+  }
+  .hero-tagline {
+    font-size: 17px; line-height: 1.7; color: rgba(255,255,255,0.65);
+    max-width: 440px; margin-bottom: 48px;
+    font-weight: 300;
+  }
+  .hero-tagline strong { color: var(--white); font-weight: 400; }
+  .hero-actions { display: flex; gap: 16px; align-items: center; }
+  .btn-primary {
+    background: var(--cyan); color: var(--navy);
+    padding: 16px 36px; font-size: 13px;
+    font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    text-decoration: none; display: inline-block;
+    transition: all 0.3s ease;
+  }
+  .btn-primary:hover {
+    background: var(--white); transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0,229,212,0.25);
+  }
+  .btn-ghost {
+    color: rgba(255,255,255,0.7); font-size: 13px;
+    font-weight: 400; letter-spacing: 0.06em;
+    text-decoration: none; display: flex; align-items: center; gap: 8px;
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--cyan); }
+  .btn-ghost svg { transition: transform 0.2s; }
+  .btn-ghost:hover svg { transform: translateX(4px); }
 
-      <main id="top">
-        <section className="border-b border-slate-200">
-          <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 lg:grid-cols-[1.15fr_0.85fr] lg:px-8 lg:py-28">
-            <div className="max-w-3xl">
-              <div className="mb-6 inline-flex rounded-full border border-slate-300 px-4 py-1.5 text-xs uppercase tracking-[0.22em] text-slate-700">
-                Spain · Germany · Cross-Border Legal Matters
-              </div>
-              <h1 className="max-w-3xl font-serif text-5xl leading-tight tracking-tight text-slate-950 md:text-6xl">
-                International legal guidance for complex family matters across borders.
-              </h1>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700">
-                Dual-qualified in Germany and Spain, Ana Piernas López advises international families and private clients on sensitive cross-border matters with strategic clarity, discretion, and more than two decades of experience.
-              </p>
-              <div className="mt-10 flex flex-wrap gap-4">
-                <a
-                  href="#contact"
-                  className="rounded-full bg-slate-900 px-6 py-3 text-sm font-medium text-white transition hover:bg-slate-800"
-                >
-                  Request a Consultation
-                </a>
-                <a
-                  href="#services"
-                  className="rounded-full border border-slate-300 px-6 py-3 text-sm font-medium text-slate-800 transition hover:bg-white"
-                >
-                  Explore Services
-                </a>
-              </div>
-              <div className="mt-12 grid gap-6 border-t border-slate-200 pt-8 sm:grid-cols-3">
-                <div>
-                  <div className="text-2xl font-semibold text-slate-950">20+ years</div>
-                  <div className="mt-1 text-sm text-slate-600">International legal practice</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-semibold text-slate-950">3 languages</div>
-                  <div className="mt-1 text-sm text-slate-600">Spanish, German, English</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-semibold text-slate-950">Dual-qualified</div>
-                  <div className="mt-1 text-sm text-slate-600">Germany and Spain</div>
-                </div>
-              </div>
-            </div>
+  .hero-right {
+    position: relative; overflow: hidden;
+  }
+  .hero-right-inner {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--navy-mid) 0%, #0A1428 100%);
+  }
+  .hero-geo {
+    position: absolute; inset: 0;
+    overflow: hidden;
+  }
+  .hero-geo-large {
+    position: absolute; top: -80px; right: -80px;
+    width: 500px; height: 500px;
+    border: 1px solid rgba(0,229,212,0.08);
+    transform: rotate(15deg);
+  }
+  .hero-geo-med {
+    position: absolute; top: 40px; right: 40px;
+    width: 320px; height: 320px;
+    border: 1px solid rgba(0,229,212,0.12);
+    transform: rotate(15deg);
+  }
+  .hero-geo-small {
+    position: absolute; bottom: 100px; left: 40px;
+    width: 160px; height: 160px;
+    border: 1px solid rgba(0,229,212,0.15);
+    transform: rotate(30deg);
+  }
+  .hero-flag-pair {
+    position: absolute; bottom: 60px; right: 60px;
+    display: flex; gap: 8px; align-items: center;
+  }
+  .flag-chip {
+    padding: 6px 14px; font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.5);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .flag-chip.active {
+    background: rgba(0,229,212,0.12); color: var(--cyan);
+    border-color: rgba(0,229,212,0.3);
+  }
+  .hero-logo-large {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.06;
+    width: 300px; height: 300px;
+  }
+  .hero-logo-center {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 160px; height: 160px;
+  }
+  .logo-ap-block {
+    width: 160px; height: 160px;
+    background: var(--cyan);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .logo-ap-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 80px; font-weight: 600;
+    color: var(--navy); letter-spacing: -4px;
+    line-height: 1; user-select: none;
+    position: relative; z-index: 1;
+  }
+  .logo-notch {
+    position: absolute; bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 60px; height: 24px;
+    background: var(--navy-mid);
+  }
+  .hero-scroll {
+    position: absolute; bottom: 40px; left: 80px;
+    display: flex; align-items: center; gap: 12px;
+    color: rgba(255,255,255,0.3);
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    animation: float 3s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, transparent, rgba(0,229,212,0.4));
+  }
 
-            <div className="flex items-stretch">
-              <div className="relative w-full overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm">
-                <div className="absolute inset-x-0 top-0 h-1 bg-slate-900" />
-                <div className="mb-8 text-sm uppercase tracking-[0.22em] text-slate-600">
-                  Trusted international counsel
-                </div>
-                <div className="space-y-6">
-                  {credentials.slice(0, 4).map((item) => (
-                    <div key={item} className="flex gap-4">
-                      <div className="mt-1 h-2.5 w-2.5 rounded-full bg-slate-900" />
-                      <p className="text-base leading-7 text-slate-700">{item}</p>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-10 rounded-2xl bg-stone-100 p-6">
-                  <p className="text-sm uppercase tracking-[0.18em] text-slate-600">Approach</p>
-                  <p className="mt-3 text-base leading-7 text-slate-700">
-                    Clear advice, cross-cultural understanding, and carefully structured legal strategy for matters where jurisdiction, language, and family dynamics all matter.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--navy);
+    border-top: 1px solid rgba(0,229,212,0.1);
+    display: grid; grid-template-columns: repeat(4, 1fr);
+  }
+  .stat-item {
+    padding: 36px 48px;
+    border-right: 1px solid rgba(255,255,255,0.06);
+    display: flex; flex-direction: column; gap: 6px;
+    position: relative; overflow: hidden;
+    transition: background 0.3s;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-item:hover { background: rgba(0,229,212,0.04); }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px; font-weight: 300; color: var(--cyan);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 11px; color: rgba(255,255,255,0.4);
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .stat-sub {
+    font-size: 11px; color: rgba(255,255,255,0.25);
+    font-style: italic;
+  }
 
-        <section className="border-b border-slate-200 bg-white">
-          <div className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
-            <div className="grid gap-6 text-sm text-slate-600 md:grid-cols-3 lg:grid-cols-6">
-              {[
-                "International Family Law",
-                "Child Abduction Cases",
-                "Cross-Border Mediation",
-                "Inheritance Matters",
-                "Spanish–German Expertise",
-                "Private International Law",
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="rounded-2xl border border-slate-200 px-4 py-4 text-center"
-                >
-                  {item}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+  /* SECTION BASE */
+  section { padding: 120px 0; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+  .section-eyebrow {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 24px;
+  }
+  .section-eyebrow span {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold);
+  }
+  .section-eyebrow-line { width: 40px; height: 1px; background: var(--gold); }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 54px); font-weight: 300;
+    line-height: 1.15; color: var(--navy);
+    margin-bottom: 20px;
+  }
+  .section-title em { font-style: italic; color: var(--cyan); }
+  .section-subtitle {
+    font-size: 16px; line-height: 1.8; color: var(--stone);
+    max-width: 540px; font-weight: 300;
+  }
 
-        <section id="about" className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-          <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr]">
-            <div>
-              <p className="text-sm uppercase tracking-[0.22em] text-slate-600">About</p>
-              <h2 className="mt-4 font-serif text-4xl tracking-tight text-slate-950">
-                A cross-border legal practice built on expertise, precision, and trust.
-              </h2>
-            </div>
-            <div className="space-y-6 text-lg leading-8 text-slate-700">
-              <p>
-                Ana Piernas López is a German and Spanish qualified lawyer based in Madrid, with a long-standing practice focused on international matters involving Spain, Germany, and multiple jurisdictions.
-              </p>
-              <p>
-                Her work is particularly centered on international family law, cross-border disputes, mediation, and complex legal questions that require a clear understanding of more than one legal system. Having grown up between Germany and Spain, she brings both legal depth and cultural fluency to highly sensitive matters.
-              </p>
-              <p>
-                Clients turn to her for careful analysis, direct communication, and strategic guidance in situations where legal decisions carry personal, financial, and long-term consequences.
-              </p>
-            </div>
-          </div>
-        </section>
+  /* ABOUT */
+  .about { background: var(--white); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 100px; align-items: start;
+  }
+  .about-left { }
+  .about-story {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 300; line-height: 1.8;
+    color: var(--ink); margin-bottom: 24px;
+  }
+  .about-body {
+    font-size: 15px; line-height: 1.9; color: var(--stone);
+    margin-bottom: 16px; font-weight: 300;
+  }
+  .about-right { padding-top: 20px; }
+  .trajectory-item {
+    display: grid; grid-template-columns: 80px 1fr;
+    gap: 24px; margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .trajectory-item:last-child { border-bottom: none; }
+  .traj-year {
+    font-family: 'DM Mono', monospace; font-size: 12px;
+    color: var(--cyan); letter-spacing: 0.06em; padding-top: 3px;
+  }
+  .traj-content h4 {
+    font-size: 14px; font-weight: 500; color: var(--navy);
+    margin-bottom: 6px; letter-spacing: 0.02em;
+  }
+  .traj-content p {
+    font-size: 13px; color: var(--stone); line-height: 1.7; font-weight: 300;
+  }
 
-        <section id="services" className="border-y border-slate-200 bg-white">
-          <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-            <div className="max-w-3xl">
-              <p className="text-sm uppercase tracking-[0.22em] text-slate-600">Services</p>
-              <h2 className="mt-4 font-serif text-4xl tracking-tight text-slate-950">
-                Legal services for international clients navigating complex cross-border matters.
-              </h2>
-              <p className="mt-5 text-lg leading-8 text-slate-700">
-                Focused expertise for cases that require careful legal judgment, international coordination, and a clear strategic path forward.
-              </p>
-            </div>
+  /* EXPERTISE */
+  .expertise { background: var(--parchment); }
+  .expertise-header {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; margin-bottom: 72px; align-items: end;
+  }
+  .pillars-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .pillar-card {
+    background: var(--white); padding: 48px 36px;
+    position: relative; overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+  }
+  .pillar-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(15,27,61,0.08);
+    z-index: 1;
+  }
+  .pillar-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; background: var(--cyan);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .pillar-card:hover::before { transform: scaleX(1); }
+  .pillar-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px; font-weight: 300;
+    color: rgba(0,229,212,0.12); line-height: 1;
+    position: absolute; top: 20px; right: 28px;
+    transition: color 0.3s;
+  }
+  .pillar-card:hover .pillar-num { color: rgba(0,229,212,0.2); }
+  .pillar-icon {
+    width: 40px; height: 40px; margin-bottom: 24px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--cyan-pale); border-radius: 0;
+  }
+  .pillar-icon svg { width: 20px; height: 20px; stroke: var(--navy); }
+  .pillar-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 600; color: var(--navy);
+    margin-bottom: 12px; line-height: 1.25;
+  }
+  .pillar-desc {
+    font-size: 13px; color: var(--stone); line-height: 1.8; font-weight: 300;
+    margin-bottom: 24px;
+  }
+  .pillar-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pillar-tag {
+    font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--navy-soft); border: 1px solid rgba(15,27,61,0.15);
+    padding: 4px 10px; font-family: 'DM Mono', monospace;
+  }
 
-            <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {services.map((service) => (
-                <article
-                  key={service.title}
-                  className="rounded-[1.75rem] border border-slate-200 bg-stone-50 p-7 transition hover:-translate-y-0.5 hover:bg-white"
-                >
-                  <h3 className="text-xl font-semibold text-slate-950">{service.title}</h3>
-                  <p className="mt-4 leading-7 text-slate-700">{service.description}</p>
-                  <a
-                    href="#contact"
-                    className="mt-6 inline-block text-sm font-medium text-slate-900 underline underline-offset-4"
-                  >
-                    Discuss this matter
-                  </a>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
+  /* DIFFERENTIATORS */
+  .diff { background: var(--navy); overflow: hidden; }
+  .diff-inner {
+    display: grid; grid-template-columns: 1fr 1.2fr;
+    gap: 0; min-height: 600px;
+  }
+  .diff-left {
+    padding: 100px 80px; border-right: 1px solid rgba(255,255,255,0.06);
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .diff-left .section-title { color: var(--white); }
+  .diff-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-style: italic; font-weight: 300;
+    color: rgba(255,255,255,0.5); line-height: 1.75;
+    border-left: 2px solid var(--cyan); padding-left: 24px;
+    margin-top: 36px;
+  }
+  .diff-right {
+    padding: 100px 80px;
+    display: flex; flex-direction: column; justify-content: center;
+    gap: 0;
+  }
+  .diff-item {
+    padding: 28px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: grid; grid-template-columns: 32px 1fr;
+    gap: 20px; align-items: start;
+    transition: padding-left 0.3s;
+  }
+  .diff-item:hover { padding-left: 8px; }
+  .diff-item:first-child { padding-top: 0; }
+  .diff-item:last-child { border-bottom: none; }
+  .diff-num {
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    color: var(--cyan); opacity: 0.6; padding-top: 3px;
+  }
+  .diff-text h4 {
+    font-size: 14px; font-weight: 500; color: var(--white);
+    margin-bottom: 6px; letter-spacing: 0.02em;
+  }
+  .diff-text p {
+    font-size: 13px; color: rgba(255,255,255,0.4);
+    line-height: 1.7; font-weight: 300;
+  }
 
-        <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-2">
-            <div className="rounded-[2rem] bg-slate-900 p-8 text-white lg:p-10">
-              <p className="text-sm uppercase tracking-[0.22em] text-slate-300">Why work with Ana</p>
-              <h2 className="mt-4 font-serif text-4xl tracking-tight">
-                The advantages clients look for when the stakes are high.
-              </h2>
-              <div className="mt-8 grid gap-4">
-                {advantages.map((item) => (
-                  <div
-                    key={item}
-                    className="flex gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-4"
-                  >
-                    <div className="mt-1 h-2.5 w-2.5 rounded-full bg-white" />
-                    <p className="leading-7 text-slate-100">{item}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+  /* SERVICES */
+  .services { background: var(--white); }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 2px; margin-top: 64px;
+  }
+  .service-card {
+    padding: 52px 48px; background: var(--parchment);
+    position: relative; overflow: hidden;
+    transition: background 0.3s;
+  }
+  .service-card:hover { background: var(--white); }
+  .service-card:nth-child(odd) { background: var(--white); }
+  .service-card:nth-child(odd):hover { background: var(--parchment); }
+  .service-flag {
+    display: flex; gap: 8px; margin-bottom: 28px;
+  }
+  .sflag {
+    font-family: 'DM Mono', monospace; font-size: 9px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 4px 10px; background: var(--cyan-pale);
+    color: var(--navy-soft);
+  }
+  .sflag.de { background: rgba(15,27,61,0.06); }
+  .service-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 600; color: var(--navy);
+    margin-bottom: 16px; line-height: 1.25;
+  }
+  .service-desc {
+    font-size: 14px; color: var(--stone); line-height: 1.85;
+    font-weight: 300;
+  }
+  .service-arrow {
+    position: absolute; bottom: 40px; right: 40px;
+    width: 36px; height: 36px; border: 1px solid rgba(15,27,61,0.12);
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s;
+  }
+  .service-card:hover .service-arrow {
+    background: var(--cyan); border-color: var(--cyan); transform: rotate(45deg);
+  }
+  .service-card:hover .service-arrow svg { stroke: var(--navy); }
 
-            <div
-              id="credentials"
-              className="rounded-[2rem] border border-slate-200 bg-white p-8 lg:p-10"
-            >
-              <p className="text-sm uppercase tracking-[0.22em] text-slate-600">Credentials & authority</p>
-              <h2 className="mt-4 font-serif text-4xl tracking-tight text-slate-950">
-                Visible trust signals that strengthen confidence before first contact.
-              </h2>
-              <div className="mt-8 space-y-5">
-                {credentials.map((item) => (
-                  <div
-                    key={item}
-                    className="border-b border-slate-200 pb-5 last:border-b-0 last:pb-0"
-                  >
-                    <p className="leading-7 text-slate-700">{item}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
+  /* MARKET READINESS */
+  .market { background: var(--parchment); }
+  .scores-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 32px; margin-top: 64px;
+  }
+  .score-card {
+    padding: 48px 40px; background: var(--white);
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .score-label {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--stone); margin-bottom: 20px; display: block;
+  }
+  .score-ring {
+    position: relative; width: 120px; height: 120px;
+    margin: 0 auto 20px;
+  }
+  .score-ring svg { transform: rotate(-90deg); }
+  .score-ring-val {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px; font-weight: 300; color: var(--navy);
+  }
+  .score-ring-val span { font-size: 16px; color: var(--stone); }
+  .score-desc {
+    font-size: 13px; color: var(--stone); line-height: 1.7; font-weight: 300;
+  }
 
-        <section className="border-y border-slate-200 bg-white">
-          <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-            <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-              <div>
-                <p className="text-sm uppercase tracking-[0.22em] text-slate-600">Process</p>
-                <h2 className="mt-4 font-serif text-4xl tracking-tight text-slate-950">
-                  A client journey designed to reduce uncertainty and create clarity early.
-                </h2>
-              </div>
-              <div className="grid gap-5 md:grid-cols-3">
-                {[
-                  {
-                    step: "01",
-                    title: "Initial assessment",
-                    text: "A focused first conversation to understand the legal issue, jurisdictions involved, and immediate priorities.",
-                  },
-                  {
-                    step: "02",
-                    title: "Strategic direction",
-                    text: "A clear view of legal options, procedural considerations, and the most effective route forward.",
-                  },
-                  {
-                    step: "03",
-                    title: "Coordinated action",
-                    text: "Representation, negotiation, or mediation handled with precision, responsiveness, and discretion.",
-                  },
-                ].map((item) => (
-                  <div key={item.step} className="rounded-[1.75rem] bg-stone-50 p-6">
-                    <div className="text-sm font-medium tracking-[0.22em] text-slate-500">
-                      {item.step}
-                    </div>
-                    <h3 className="mt-4 text-xl font-semibold text-slate-950">
-                      {item.title}
-                    </h3>
-                    <p className="mt-4 leading-7 text-slate-700">{item.text}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
+  /* CONTACT */
+  .contact { background: var(--navy); }
+  .contact-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 100px; align-items: start;
+  }
+  .contact-left .section-title { color: var(--white); }
+  .contact-left .section-subtitle { color: rgba(255,255,255,0.5); }
+  .contact-details { margin-top: 48px; display: flex; flex-direction: column; gap: 24px; }
+  .contact-item {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .contact-item:last-child { border-bottom: none; }
+  .contact-icon {
+    width: 32px; height: 32px; background: rgba(0,229,212,0.1);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-icon svg { width: 14px; height: 14px; stroke: var(--cyan); }
+  .contact-info h4 { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cyan); margin-bottom: 4px; font-family: 'DM Mono', monospace; }
+  .contact-info p { font-size: 14px; color: rgba(255,255,255,0.65); font-weight: 300; line-height: 1.5; }
+  .contact-right {
+    padding-top: 20px;
+  }
+  .contact-form-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 300; color: var(--white);
+    margin-bottom: 40px; line-height: 1.3;
+  }
+  .contact-form-label em { font-style: italic; color: var(--cyan); }
+  .form-row { margin-bottom: 20px; }
+  .form-row input, .form-row textarea, .form-row select {
+    width: 100%; background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--white); padding: 16px 20px;
+    font-family: 'DM Sans', sans-serif; font-size: 14px;
+    outline: none; transition: border-color 0.3s;
+    -webkit-appearance: none;
+  }
+  .form-row input::placeholder,
+  .form-row textarea::placeholder { color: rgba(255,255,255,0.25); }
+  .form-row input:focus,
+  .form-row textarea:focus,
+  .form-row select:focus { border-color: var(--cyan); }
+  .form-row textarea { resize: vertical; min-height: 120px; }
+  .form-row select { color: rgba(255,255,255,0.6); }
+  .form-row select option { background: var(--navy-mid); }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-submit {
+    width: 100%; background: var(--cyan); color: var(--navy);
+    border: none; padding: 18px; font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; cursor: none;
+    transition: all 0.3s;
+  }
+  .form-submit:hover {
+    background: var(--white); transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0,229,212,0.2);
+  }
+  .form-note {
+    font-size: 11px; color: rgba(255,255,255,0.25);
+    text-align: center; margin-top: 12px; font-style: italic;
+  }
 
-        <section id="insights" className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <div className="max-w-3xl">
-              <p className="text-sm uppercase tracking-[0.22em] text-slate-600">Insights</p>
-              <h2 className="mt-4 font-serif text-4xl tracking-tight text-slate-950">
-                Thought leadership that reinforces expertise and answers important client questions.
-              </h2>
-            </div>
-            <a
-              href="#contact"
-              className="text-sm font-medium text-slate-900 underline underline-offset-4"
-            >
-              Enquire about a specific issue
-            </a>
-          </div>
+  /* FOOTER */
+  footer {
+    background: #080F24;
+    padding: 48px 0; border-top: 1px solid rgba(255,255,255,0.04);
+  }
+  .footer-inner {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-copy {
+    font-size: 12px; color: rgba(255,255,255,0.2);
+    font-family: 'DM Mono', monospace;
+  }
+  .footer-lang {
+    display: flex; gap: 16px;
+  }
+  .footer-lang button {
+    background: none; border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.3); padding: 6px 14px;
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.1em; cursor: none;
+    transition: all 0.2s;
+  }
+  .footer-lang button.active, .footer-lang button:hover {
+    border-color: var(--cyan); color: var(--cyan);
+  }
 
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {insights.map((post) => (
-              <article
-                key={post.title}
-                className="rounded-[1.75rem] border border-slate-200 bg-white p-7"
-              >
-                <div className="text-xs uppercase tracking-[0.22em] text-slate-500">
-                  Insight article
-                </div>
-                <h3 className="mt-4 text-2xl font-semibold leading-tight text-slate-950">
-                  {post.title}
-                </h3>
-                <p className="mt-4 leading-7 text-slate-700">{post.excerpt}</p>
-                <a
-                  href="#contact"
-                  className="mt-6 inline-block text-sm font-medium text-slate-900 underline underline-offset-4"
-                >
-                  Read more
-                </a>
-              </article>
-            ))}
-          </div>
-        </section>
+  /* ANIMATIONS */
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
 
-        <section className="border-y border-slate-200 bg-slate-900 text-white">
-          <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-            <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-              <div>
-                <p className="text-sm uppercase tracking-[0.22em] text-slate-300">Consultation</p>
-                <h2 className="mt-4 font-serif text-4xl tracking-tight">
-                  Discuss your international legal matter with experienced cross-border counsel.
-                </h2>
-                <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-200">
-                  Early legal clarity can make a substantial difference in international matters. Get in touch to discuss the situation, the jurisdictions involved, and the next appropriate step.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-4 lg:justify-end">
-                <a
-                  href="#contact"
-                  className="rounded-full bg-white px-6 py-3 text-sm font-medium text-slate-900 transition hover:bg-stone-100"
-                >
-                  Schedule a Consultation
-                </a>
-                <a
-                  href="mailto:info@example.com"
-                  className="rounded-full border border-white/20 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/10"
-                >
-                  Email the Office
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
+  /* MIKK BADGE */
+  .mikk-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(0,229,212,0.08); border: 1px solid rgba(0,229,212,0.2);
+    padding: 10px 20px; margin-top: 32px;
+  }
+  .mikk-badge-dot { width: 6px; height: 6px; background: var(--cyan); border-radius: 50%; }
+  .mikk-badge-text { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--cyan); letter-spacing: 0.1em; text-transform: uppercase; }
+  .mikk-badge-text strong { color: var(--white); }
 
-        <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
-            <div>
-              <p className="text-sm uppercase tracking-[0.22em] text-slate-600">
-                Frequently asked questions
-              </p>
-              <h2 className="mt-4 font-serif text-4xl tracking-tight text-slate-950">
-                Practical information that helps reduce hesitation.
-              </h2>
-            </div>
-            <div className="space-y-4">
-              {faqs.map((faq) => (
-                <details
-                  key={faq.q}
-                  className="group rounded-[1.5rem] border border-slate-200 bg-white p-6"
-                >
-                  <summary className="cursor-pointer list-none text-lg font-semibold text-slate-950">
-                    {faq.q}
-                  </summary>
-                  <p className="mt-4 leading-7 text-slate-700">{faq.a}</p>
-                </details>
-              ))}
-            </div>
-          </div>
-        </section>
+  /* RESPONSIVE BASICS */
+  @media (max-width: 900px) {
+    nav { padding: 20px 30px; }
+    nav.scrolled { padding: 14px 30px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 100px 30px 60px; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .about-grid, .diff-inner, .expertise-header, .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+    .pillars-grid, .services-grid, .scores-grid { grid-template-columns: 1fr; }
+    .container { padding: 0 30px; }
+    section { padding: 80px 0; }
+    .diff-left, .diff-right { padding: 60px 30px; }
+    body { cursor: auto; }
+    .cursor, .cursor-ring { display: none; }
+  }
+</style>
+</head>
+<body>
 
-        <section id="contact" className="border-t border-slate-200 bg-white">
-          <div className="mx-auto grid max-w-7xl gap-10 px-6 py-20 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
-            <div>
-              <p className="text-sm uppercase tracking-[0.22em] text-slate-600">Contact</p>
-              <h2 className="mt-4 font-serif text-4xl tracking-tight text-slate-950">
-                Start with a clear and confidential first conversation.
-              </h2>
-              <p className="mt-5 max-w-xl text-lg leading-8 text-slate-700">
-                For international legal matters, early clarity matters. Use the form to describe your situation briefly and the office can respond with the next appropriate step.
-              </p>
-              <div className="mt-8 space-y-3 text-slate-700">
-                <p>Madrid, Spain</p>
-                <p>Spanish · German · English</p>
-                <p>info@example.com</p>
-                <p>+34 000 000 000</p>
-              </div>
-            </div>
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-            <form className="rounded-[2rem] border border-slate-200 bg-stone-50 p-8 shadow-sm">
-              <div className="grid gap-5 md:grid-cols-2">
-                <label className="block">
-                  <span className="mb-2 block text-sm font-medium text-slate-700">Name</span>
-                  <input
-                    className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-slate-500"
-                    placeholder="Your name"
-                  />
-                </label>
-                <label className="block">
-                  <span className="mb-2 block text-sm font-medium text-slate-700">Email</span>
-                  <input
-                    type="email"
-                    className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-slate-500"
-                    placeholder="you@example.com"
-                  />
-                </label>
-                <label className="block md:col-span-2">
-                  <span className="mb-2 block text-sm font-medium text-slate-700">Phone</span>
-                  <input
-                    className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-slate-500"
-                    placeholder="Optional"
-                  />
-                </label>
-                <label className="block md:col-span-2">
-                  <span className="mb-2 block text-sm font-medium text-slate-700">How can we help?</span>
-                  <textarea
-                    rows={6}
-                    className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-slate-500"
-                    placeholder="Briefly describe your legal matter, the countries involved, and any urgent timing concerns."
-                  />
-                </label>
-              </div>
-              <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                <p className="max-w-md text-sm leading-6 text-slate-600">
-                  By submitting this form, you request a response regarding your enquiry. Avoid sending highly confidential documents until requested.
-                </p>
-                <button
-                  type="submit"
-                  className="rounded-full bg-slate-900 px-6 py-3 text-sm font-medium text-white transition hover:bg-slate-800"
-                >
-                  Send Enquiry
-                </button>
-              </div>
-            </form>
-          </div>
-        </section>
-      </main>
-
-      <footer className="bg-stone-50">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-12 text-sm text-slate-600 lg:grid-cols-[1fr_auto_auto] lg:px-8">
-          <div>
-            <div className="font-serif text-xl text-slate-900">Ana Piernas López</div>
-            <p className="mt-3 max-w-md leading-7">
-              International legal advice for complex cross-border matters, with particular focus on Spain, Germany, and international family law.
-            </p>
-          </div>
-          <div className="space-y-2">
-            {navItems.map((item) => (
-              <a key={item.label} href={item.href} className="block hover:text-slate-900">
-                {item.label}
-              </a>
-            ))}
-          </div>
-          <div className="space-y-2">
-            <div>Madrid, Spain</div>
-            <div>info@example.com</div>
-            <div>+34 000 000 000</div>
-          </div>
-        </div>
-      </footer>
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 36 36" fill="none">
+        <!-- AP logo mark simplified -->
+        <rect width="36" height="36" fill="#00E5D4"/>
+        <path d="M4 28L13 8L22 28" stroke="#0F1B3D" stroke-width="3" fill="none"/>
+        <path d="M7 20H19" stroke="#0F1B3D" stroke-width="2.5"/>
+        <path d="M22 8H30V28" stroke="#0F1B3D" stroke-width="3" fill="none"/>
+        <path d="M22 18H28" stroke="#0F1B3D" stroke-width="2.5"/>
+        <!-- notch -->
+        <rect x="13" y="28" width="8" height="6" fill="#0F1B3D"/>
+      </svg>
     </div>
-  );
-}
+    <div class="nav-logo-text">
+      <span class="name">Ana Piernas López</span>
+      <span class="title-tag">Abogada · Rechtsanwältin</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact" class="nav-cta">Consultation</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span>Madrid · Munich · International</span>
+    </div>
+    <h1 class="hero-name">
+      Where two legal<br>systems <em>converge.</em>
+    </h1>
+    <div class="hero-credentials">
+      <span class="credential-tag">Dual-Qualified</span>
+      <span class="credential-tag">20+ Years</span>
+      <span class="credential-tag">MiKK Ambassador 🇪🇸</span>
+      <span class="credential-tag">ES · DE · EN</span>
+    </div>
+    <p class="hero-tagline">
+      International family law counsel for families who don't fit inside a single jurisdiction. <strong>Spanish and German law — in one practice.</strong>
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Request a Consultation</a>
+      <a href="#expertise" class="btn-ghost">
+        Explore Services
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5"/></svg>
+      </a>
+    </div>
+    <div class="mikk-badge">
+      <div class="mikk-badge-dot"></div>
+      <div class="mikk-badge-text"><strong>MiKK Ambassador for Spain</strong> · Appointed 2023</div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-inner"></div>
+    <div class="hero-geo">
+      <div class="hero-geo-large"></div>
+      <div class="hero-geo-med"></div>
+      <div class="hero-geo-small"></div>
+    </div>
+    <div class="hero-logo-center">
+      <div class="logo-ap-block">
+        <div class="logo-ap-text">AP</div>
+        <div class="logo-notch"></div>
+      </div>
+    </div>
+    <div class="hero-flag-pair">
+      <span class="flag-chip active">🇪🇸 España</span>
+      <span class="flag-chip active">🇩🇪 Deutschland</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item reveal">
+    <div class="stat-num">20+</div>
+    <div class="stat-label">Years Active Practice</div>
+    <div class="stat-sub">Spain & Germany since 2001</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-1">
+    <div class="stat-num">2</div>
+    <div class="stat-label">Bar Admissions</div>
+    <div class="stat-sub">Madrid Bar · Munich Bar</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-2">
+    <div class="stat-num">3</div>
+    <div class="stat-label">Languages</div>
+    <div class="stat-sub">Spanish · German · English</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-3">
+    <div class="stat-num">1</div>
+    <div class="stat-label">MiKK Ambassadorship</div>
+    <div class="stat-sub">Spain · Appointed 2023</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-left">
+        <div class="section-eyebrow reveal">
+          <div class="section-eyebrow-line"></div>
+          <span>Biography</span>
+        </div>
+        <h2 class="section-title reveal">A lawyer shaped by<br><em>two countries.</em></h2>
+        <p class="about-story reveal">
+          Ana Piernas López grew up in a Spanish family in Germany — a lived experience that became the foundation of a 20-year practice that no curriculum can replicate.
+        </p>
+        <p class="about-body reveal">
+          After completing two German State Law Exams and qualifying at the Munich Bar, Ana relocated to Madrid in 2001, building a dual practice that operates simultaneously within both legal systems. Today, Piernas Abogados advises individuals, families, and businesses on the most complex cross-border matters between Spain and Germany.
+        </p>
+        <p class="about-body reveal">
+          Ana's expertise extends beyond courtrooms: she is a MiKK-trained transboundary family mediator (Berlin, 2013), a certified Parenting Coordinator (ANCOPA, 2019), and co-founder of Plataforma Familia y Derecho, an initiative to establish specialized family courts across Spain.
+        </p>
+        <p class="about-body reveal">
+          She teaches International Family Law and Mediation in master's programs across Spain, and has published in leading legal reviews on cross-border family matters.
+        </p>
+      </div>
+      <div class="about-right">
+        <div class="trajectory-item reveal">
+          <div class="traj-year">DE → ES<br>2001</div>
+          <div class="traj-content">
+            <h4>Dual Qualification Established</h4>
+            <p>Passed two German State Exams (Munich). Relocated to Madrid and joined the Madrid Bar. Began building a practice that spans both jurisdictions simultaneously — not sequentially.</p>
+          </div>
+        </div>
+        <div class="trajectory-item reveal reveal-delay-1">
+          <div class="traj-year">2013</div>
+          <div class="traj-content">
+            <h4>MiKK Cross-Border Mediation Certification</h4>
+            <p>Trained as a transboundary family mediator in Berlin with MiKK — Europe's leading institution for cross-border family mediation. Has since co-mediated cases in Spanish, German, and English.</p>
+          </div>
+        </div>
+        <div class="trajectory-item reveal reveal-delay-2">
+          <div class="traj-year">2019</div>
+          <div class="traj-content">
+            <h4>Parenting Coordination Certification</h4>
+            <p>Certified with ANCOPA, Spain's pioneer body in parenting coordination. Positions Ana at the intersection of law, conflict resolution, and child-centered practice.</p>
+          </div>
+        </div>
+        <div class="trajectory-item reveal reveal-delay-3">
+          <div class="traj-year">2020–</div>
+          <div class="traj-content">
+            <h4>Academia & Thought Leadership</h4>
+            <p>Teaching International Family Law, Mediation, and Parenting Coordination in master's programs at leading Spanish institutions. Published author in specialist legal journals.</p>
+          </div>
+        </div>
+        <div class="trajectory-item reveal">
+          <div class="traj-year">2023</div>
+          <div class="traj-content">
+            <h4>Appointed MiKK Ambassador for Spain</h4>
+            <p>Institutional recognition of Ana's role as a leading voice in European cross-border family mediation. One of a select group of practitioners appointed to represent MiKK nationally.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE / CONTENT PILLARS -->
+<section class="expertise" id="expertise">
+  <div class="container">
+    <div class="expertise-header">
+      <div>
+        <div class="section-eyebrow reveal">
+          <div class="section-eyebrow-line"></div>
+          <span>Practice Areas</span>
+        </div>
+        <h2 class="section-title reveal">Three pillars.<br><em>One practice.</em></h2>
+      </div>
+      <div class="reveal">
+        <p class="section-subtitle">Ana's expertise is organized around the situations her clients actually face — not legal categories they don't understand.</p>
+      </div>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card reveal">
+        <div class="pillar-num">01</div>
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 004 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div class="pillar-title">When Two Legal Systems Collide</div>
+        <p class="pillar-desc">Jurisdiction, applicable law, and enforcement of foreign judgments — explained for families and individuals, not for other lawyers. Cross-border divorce, international succession, property in two countries.</p>
+        <div class="pillar-tags">
+          <span class="pillar-tag">Cross-Border Divorce</span>
+          <span class="pillar-tag">International Succession</span>
+          <span class="pillar-tag">Jurisdiction</span>
+          <span class="pillar-tag">EU Regulations</span>
+        </div>
+      </div>
+      <div class="pillar-card reveal reveal-delay-1">
+        <div class="pillar-num">02</div>
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        </div>
+        <div class="pillar-title">The Child at the Center</div>
+        <p class="pillar-desc">International parental child abduction (Hague Convention). Cross-border custody and parenting agreements. Parenting coordination for high-conflict separated families. The most urgent cases in family law.</p>
+        <div class="pillar-tags">
+          <span class="pillar-tag">Child Abduction</span>
+          <span class="pillar-tag">Hague Convention</span>
+          <span class="pillar-tag">Custody</span>
+          <span class="pillar-tag">Parenting Coord.</span>
+        </div>
+      </div>
+      <div class="pillar-card reveal reveal-delay-2">
+        <div class="pillar-num">03</div>
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <div class="pillar-title">Beyond the Courtroom</div>
+        <p class="pillar-desc">International mediation and parenting coordination as strategic choices — faster, culturally intelligent, and more durable than litigation. Especially effective for families spanning Spain and Germany.</p>
+        <div class="pillar-tags">
+          <span class="pillar-tag">International Mediation</span>
+          <span class="pillar-tag">MiKK Certified</span>
+          <span class="pillar-tag">ANCOPA</span>
+          <span class="pillar-tag">ES · DE · EN</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENTIATORS -->
+<section class="diff">
+  <div class="diff-inner">
+    <div class="diff-left">
+      <div class="section-eyebrow reveal" style="--eyebrow-color: var(--cyan);">
+        <div class="section-eyebrow-line" style="background:var(--cyan)"></div>
+        <span style="color:var(--cyan)">What Sets Ana Apart</span>
+      </div>
+      <h2 class="section-title reveal" style="color:var(--white)">Not acquired.<br><em>Lived.</em></h2>
+      <blockquote class="diff-quote reveal">
+        "The Spain–Germany corridor is not a market I entered. It is the world I grew up in."
+      </blockquote>
+    </div>
+    <div class="diff-right">
+      <div class="diff-item reveal">
+        <div class="diff-num">01</div>
+        <div class="diff-text">
+          <h4>Native Dual Legal Identity</h4>
+          <p>Ana passed two German State Exams before relocating to Spain. She doesn't advise on two systems — she practises within both simultaneously, which requires separate bar admissions most lawyers never pursue.</p>
+        </div>
+      </div>
+      <div class="diff-item reveal reveal-delay-1">
+        <div class="diff-num">02</div>
+        <div class="diff-text">
+          <h4>MiKK Ambassador for Spain (2023)</h4>
+          <p>Appointed by Europe's leading cross-border family mediation institution. One of a small number of practitioners recognised at this level across the continent.</p>
+        </div>
+      </div>
+      <div class="diff-item reveal reveal-delay-2">
+        <div class="diff-num">03</div>
+        <div class="diff-text">
+          <h4>Child Abduction as Daily Practice</h4>
+          <p>International parental child abduction is not a niche specialisation for Ana — it is daily work. Very few lawyers in Spain or Germany have this depth of Hague Convention experience.</p>
+        </div>
+      </div>
+      <div class="diff-item reveal reveal-delay-3">
+        <div class="diff-num">04</div>
+        <div class="diff-text">
+          <h4>Five Modes of Resolution</h4>
+          <p>Litigation, arbitration, negotiation, mediation, and parenting coordination — Ana's practice offers every tool, deployed strategically based on what the family actually needs.</p>
+        </div>
+      </div>
+      <div class="diff-item reveal">
+        <div class="diff-num">05</div>
+        <div class="diff-text">
+          <h4>Bicultural Intelligence</h4>
+          <p>Spanish and German cultures navigate conflict, family, and law very differently. Ana's lived bicultural experience shapes how she frames strategy, negotiates across cultures, and advises families in crisis.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:0;">
+      <div>
+        <div class="section-eyebrow reveal">
+          <div class="section-eyebrow-line"></div>
+          <span>Services</span>
+        </div>
+        <h2 class="section-title reveal">Legal counsel for<br><em>every stage.</em></h2>
+      </div>
+      <p class="section-subtitle reveal">From urgent crisis response to long-term planning — across Spain, Germany, and international jurisdictions.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-flag">
+          <span class="sflag">🇪🇸 Spain</span>
+          <span class="sflag de">🇩🇪 Germany</span>
+        </div>
+        <div class="service-title">International Family Law</div>
+        <p class="service-desc">Cross-border divorce jurisdiction, international custody, matrimonial property regimes, maintenance obligations across borders, and recognition of foreign judgments in Spain and Germany.</p>
+        <div class="service-arrow">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="#1B2A5E" stroke-width="1.5"/></svg>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-flag">
+          <span class="sflag">🌍 International</span>
+        </div>
+        <div class="service-title">International Child Abduction</div>
+        <p class="service-desc">Urgent representation in Hague Convention cases. Both sides of the proceeding — seeking the return of a child or defending against return. One of the most complex and time-sensitive areas of family law.</p>
+        <div class="service-arrow">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="#1B2A5E" stroke-width="1.5"/></svg>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-flag">
+          <span class="sflag">🇪🇸 Spain</span>
+          <span class="sflag de">🇩🇪 Germany</span>
+        </div>
+        <div class="service-title">International Succession & Inheritance</div>
+        <p class="service-desc">Estate planning and inheritance disputes across Spain and Germany. EU Succession Regulation. Wills with cross-border effect. Asset protection strategies for international families.</p>
+        <div class="service-arrow">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="#1B2A5E" stroke-width="1.5"/></svg>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-flag">
+          <span class="sflag">🌍 MiKK Certified</span>
+        </div>
+        <div class="service-title">Cross-Border Mediation & Parenting Coordination</div>
+        <p class="service-desc">MiKK-certified transboundary family mediation in Spanish, German, and English. Parenting coordination for separated families in high-conflict cross-border situations. A faster, more durable alternative to litigation.</p>
+        <div class="service-arrow">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="#1B2A5E" stroke-width="1.5"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKET READINESS SCORES -->
+<section class="market">
+  <div class="container">
+    <div class="section-eyebrow reveal">
+      <div class="section-eyebrow-line"></div>
+      <span>Professional Standing</span>
+    </div>
+    <h2 class="section-title reveal">Credibility in<br><em>three dimensions.</em></h2>
+    <div class="scores-grid">
+      <div class="score-card reveal">
+        <span class="score-label">Credibility</span>
+        <div class="score-ring">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="50" fill="none" stroke="#E5E7EB" stroke-width="6"/>
+            <circle cx="60" cy="60" r="50" fill="none" stroke="#00E5D4" stroke-width="6"
+              stroke-dasharray="314" stroke-dashoffset="31" stroke-linecap="square"
+              class="score-arc" data-score="90"/>
+          </svg>
+          <div class="score-ring-val">9<span>/10</span></div>
+        </div>
+        <p class="score-desc">Dual bar admission, 20+ years active practice, MiKK Ambassador, academic positions. Technically bulletproof.</p>
+      </div>
+      <div class="score-card reveal reveal-delay-1">
+        <span class="score-label">Specialization</span>
+        <div class="score-ring">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="50" fill="none" stroke="#E5E7EB" stroke-width="6"/>
+            <circle cx="60" cy="60" r="50" fill="none" stroke="#00E5D4" stroke-width="6"
+              stroke-dasharray="314" stroke-dashoffset="47" stroke-linecap="square"/>
+          </svg>
+          <div class="score-ring-val">8<span>/10</span></div>
+        </div>
+        <p class="score-desc">Deep, genuine niche in Spain–Germany family law. Unique parenting coordination credential. Strongest in the corridor.</p>
+      </div>
+      <div class="score-card reveal reveal-delay-2">
+        <span class="score-label">Visibility</span>
+        <div class="score-ring">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="50" fill="none" stroke="#E5E7EB" stroke-width="6"/>
+            <circle cx="60" cy="60" r="50" fill="none" stroke="#C4A052" stroke-width="6"
+              stroke-dasharray="314" stroke-dashoffset="188" stroke-linecap="square"/>
+          </svg>
+          <div class="score-ring-val" style="color: var(--gold)">4<span>/10</span></div>
+        </div>
+        <p class="score-desc">The primary growth opportunity. Exceptional credentials not yet discoverable at the level they deserve, particularly in English-language channels.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-left">
+        <div class="section-eyebrow reveal">
+          <div class="section-eyebrow-line" style="background:var(--cyan)"></div>
+          <span style="color:var(--cyan)">Get in Touch</span>
+        </div>
+        <h2 class="section-title reveal" style="color:var(--white)">Your situation deserves<br><em>the right counsel.</em></h2>
+        <p class="section-subtitle reveal" style="color:rgba(255,255,255,0.5)">Ana advises in Spanish, German, and English. First consultation by appointment.</p>
+        <div class="contact-details">
+          <div class="contact-item reveal">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </div>
+            <div class="contact-info">
+              <h4>Office</h4>
+              <p>Piernas Abogados · Madrid, España<br>Practice also active in Germany</p>
+            </div>
+          </div>
+          <div class="contact-item reveal reveal-delay-1">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            </div>
+            <div class="contact-info">
+              <h4>Languages</h4>
+              <p>Español · Deutsch · English<br>Bilingual in Spanish and German</p>
+            </div>
+          </div>
+          <div class="contact-item reveal reveal-delay-2">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><M/><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            </div>
+            <div class="contact-info">
+              <h4>Jurisdictions</h4>
+              <p>Spain · Germany · EU Cross-Border<br>International Family Law</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-right reveal">
+        <p class="contact-form-label">Tell us about your <em>situation.</em></p>
+        <div class="form-grid">
+          <div class="form-row">
+            <input type="text" placeholder="First name">
+          </div>
+          <div class="form-row">
+            <input type="text" placeholder="Last name">
+          </div>
+        </div>
+        <div class="form-row">
+          <input type="email" placeholder="Email address">
+        </div>
+        <div class="form-row">
+          <select>
+            <option value="" disabled selected>Area of enquiry</option>
+            <option>International Family Law</option>
+            <option>Child Abduction (Hague Convention)</option>
+            <option>Cross-Border Divorce</option>
+            <option>International Succession</option>
+            <option>Mediation / Parenting Coordination</option>
+            <option>Other Cross-Border Matter</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <select>
+            <option value="" disabled selected>Preferred language / Bevorzugte Sprache</option>
+            <option>Español</option>
+            <option>Deutsch</option>
+            <option>English</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <textarea placeholder="Briefly describe your situation (confidential)"></textarea>
+        </div>
+        <button class="form-submit">Request Consultation</button>
+        <p class="form-note">All enquiries are treated with strict professional confidentiality.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        © 2025 Piernas Abogados · Ana Piernas López · Abogada & Rechtsanwältin · Madrid
+      </div>
+      <div class="footer-lang">
+        <button class="active">EN</button>
+        <button>ES</button>
+        <button>DE</button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+  });
+  function animRing() {
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animRing);
+  }
+  animRing();
+  document.querySelectorAll('a, button, .pillar-card, .service-card').forEach(el => {
+    el.addEventListener('mouseenter', () => { ring.style.transform = 'translate(-50%, -50%) scale(1.8)'; ring.style.opacity = '0.4'; cursor.style.transform = 'translate(-50%, -50%) scale(0.5)'; });
+    el.addEventListener('mouseleave', () => { ring.style.transform = 'translate(-50%, -50%) scale(1)'; ring.style.opacity = '0.6'; cursor.style.transform = 'translate(-50%, -50%) scale(1)'; });
+  });
+
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => obs.observe(r));
+
+  // Footer language buttons
+  document.querySelectorAll('.footer-lang button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.footer-lang button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
